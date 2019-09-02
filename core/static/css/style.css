@@ -420,7 +420,7 @@ a, a:hover {
 
 @media (min-width: 20px) and (max-width: 450px) {
   .navbar-toggle:hover, .navbar-toggle {
-    background-color: #fff;
+    background-color: red;
     color: #000;
   }
   .navbar-toggle {
