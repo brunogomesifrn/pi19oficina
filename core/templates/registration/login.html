@@ -48,6 +48,15 @@
 					</form>
 				</div>
 			</div>
+
+			<h2>Página de Login</h2>
+<form method="post">
+{% csrf_token %}
+<p>Usuário: {{ form.username }}</p>
+<p>Senha: {{ form.password }}</p>
+<button type="submit">Login</button>
+</form>
+
 		</div>
 
 			<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
