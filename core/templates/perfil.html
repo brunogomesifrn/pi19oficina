@@ -6,5 +6,9 @@
 <body>
 <p>Página de Perfil</p>
 <p><a href="{% url 'logout' %}">Sair</a></p>
+
+<p>Olá {{ user.username }}</p>
+<p><a href="{% url 'dados' user.id %}">Dados
+Pessoais</a></p>
 </body>
 </html>
