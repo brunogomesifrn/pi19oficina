@@ -1,60 +1,71 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html>
 <head>
 	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CADASTRO</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	
 </head>
 <body>
 
-<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class=" col-md-12">
+				{% if not user.is_authenticated %}
 				<h1 class="text-center">CADASTRE-SE</h1>
+				{% endif %}
+
+				{% if user.is_authenticated %}
+				<h1 class="text-center">EDITE</h1>
+				{% endif %}
+
+				{% if form.errors %}
+				<div class="alert alert-danger">
+					<strong>Algo deu errado!</strong>
+				</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Endereço de email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Confirmar Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-  </div>
-  <button type="submit" class="btn btn-primary">CADASTRAR</button>
-</form>
+				<form method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="exampleInputEmail1">Username</label>
+						{{ form.username | add_class:"form-control"}}
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Senha</label>
+						{{ form.password1 | add_class:"form-control"}}
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Confirmar Senha</label>
+						{{ form.password2 | add_class:"form-control"}}
+					</div>
+					{% if not user.is_authenticated %}
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+					{% endif %}
+					{% if user.is_authenticated %}
+					<button type="submit" class="btn btn-primary">Salvar Alterações</button>
+					{% endif %}
+				</form>
 			</div>
-			<form method="post">
-				{% csrf_token %}
-				<p>Usuário: {{ form.username }}</p>
-				<p>Senha: {{ form.password1 }}</p>
-				<p>Repetir Senha: {{ form.password2 }}</p>
-				<button type="submit">CADASTRAR</button>
-			</form>
 		</div>
 		
-	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-	<script type="text/javascript" src="{% static 'contactform/contactform.js' %}"></script>
-</body>
-</html>
+		<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+		<script type="text/javascript" src="{% static 'contactform/contactform.js' %}"></script>
+	</body>
+	</html>
