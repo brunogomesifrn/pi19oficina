@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from core.views import home, cadastro, perfil, dados
+from core.views import home, cadastro, perfil, dados, base
 from django.contrib.auth import views as auth_views
 
 
@@ -27,4 +27,5 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path('dados/<int:id>/', dados, name='dados'),
+    path('base', base, name='base'),
 ]

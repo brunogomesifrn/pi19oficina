@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 
 def home(request):
 	return render(request, 'home.html')
+
 @login_required
 def perfil(request):
 	return render(request, 'perfil.html')
+
 def cadastro(request):
 	form = UserCreationForm(request.POST or None)
 	if form.is_valid():
@@ -18,6 +20,7 @@ def cadastro(request):
 	'form': form
 	}
 	return render(request, 'cadastro.html', contexto)
+
 @login_required
 def dados(request, id):
 	user = User.objects.get(pk=id)
@@ -29,3 +32,7 @@ def dados(request, id):
 	'form': form
 	}
 	return render(request, 'cadastro.html', contexto)
+
+@login_required
+def base(request):
+	return render(request, 'base.html')
