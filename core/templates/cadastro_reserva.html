@@ -1,0 +1,29 @@
+{% extends "base2.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>Cadastrar reserva</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+	<div class="col-12">
+		<h1>Cadastrar reserva</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<form method="post">
+			{% csrf_token %}
+			<label for="">Data:</label>
+						{{ form.data | add_class:"form-control"}}
+			<label for="">Hora:</label>
+						{{ form.hora | add_class:"form-control"}}
+			<label for="">Telefone:</label>
+						{{ form.contato | add_class:"form-control"}}
+			<button type="submit">Salvar</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

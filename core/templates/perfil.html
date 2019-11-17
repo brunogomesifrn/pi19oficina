@@ -27,7 +27,8 @@
 	<div class="container">
 		<h2>Olá, {{user.username}}</h2> <p class="alinhar"> <a href="{% url 'home' %}" class="text-white"> <button type="button" class="btn btn-success">Página Inicial</button> </a> </p>
 			<a href="{% url 'dados' user.id %}" class="text-white"> <button type="button" class="btn btn-success w-100">Editar Dados</button> </a><br /> <br />
-		<a href="{% url 'dados' user.id %}" class="text-white"> <button type="button" class="btn btn-success w-100">Efetuar reserva</button> </a><br /> <br />
+		<a href="{% url 'cadastro_reserva' %}" class="text-white"> <button type="button" class="btn btn-success w-100">Efetuar reserva</button> </a><br /> <br />
+		<a href="{% url 'reservas' %}" class="text-white"> <button type="button" class="btn btn-success w-100">Minhas reservas</button> </a><br /> <br />
 		<a href="{% url 'logout' %}" class="text-white"> <button type="button" class="btn btn-success w-100">SAIR</button> </a>
 	</div>
 		

@@ -35,8 +35,14 @@
                 <li><a href="#feature">Serviço</a></li>
                 <li><a href="#portfolio">Imagens</a></li>
                 <li><a href="#contact">Contatos</a></li>
+                {% if not user.is_authenticated %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'perfil' %}">Meu perfil</a></li>
+                {% endif %}
+
               </ul>
             </div>
           </div>

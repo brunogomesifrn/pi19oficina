@@ -1,0 +1,63 @@
+{% extends "base2.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>Reservas</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+	<div class="col-12">
+		<h1>Todas as reservas</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Número</th>
+					<th scope="col">Data</th>
+					<th scope="col">Hora</th>
+					<th scope="col">Telefone</th>
+					<th scope="col">Resultado</th>
+					<th scope="col">Concluido</th>
+					<th scope="col">Gerenciar</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for reserva in lista_reservas%}
+				<tr>
+					<th scope="row">{{reserva.id}}</th>
+					<td>{{reserva.data}}</td>
+					<td>{{reserva.hora}}</td>
+					<td>{{reserva.contato}}</td>
+					{% if not reserva.resultado %}
+					<td>Em andamento</td>
+					{% else %}
+					<td>Concluido</td>
+					{% endif %}
+
+					{% if not reserva.conclusao %}
+					<td>Não</td>
+					{% else %}
+					<td>Sim</td>
+					{% endif %}
+					{% if not reserva.resultado %}
+					<td> <a href="{% url 'editar_reserva' reserva.id %}"><button type="button" class="btn btn-info" >Editar</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">excluir</button></td> </a>
+					{% else %}
+					<td> <a href="{% url 'editar_reserva' reserva.id %}"><button type="button" class="btn btn-info" disabled>Editar</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger" disabled>excluir</button></td></td>
+					{% endif %}
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="7" scope="row">Nada Castrado</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</div>
+</div>
+{% endblock %}
