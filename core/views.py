@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Reserva
+from .models import Reservas
 from .forms import ReservaForm
 # Create your views here.
 
@@ -40,8 +40,8 @@ def base(request):
 	return render(request, 'base2.html')
 
 @login_required
-def reservas(request):
-	reservas = Reserva.objects.all()
+def reservas(request, user):
+	reservas = Reservas.objects.filter(user=request.user)
 	contexto = {
 	'lista_reservas': reservas
 	}
@@ -50,7 +50,9 @@ def reservas(request):
 def cadastro_reserva(request):
 	form = ReservaForm(request.POST or None)
 	if form.is_valid():
-			form.save()
+			reserva_salva = form.save(commit=False)
+			reserva_salva.user = request.user
+			reserva_salva.save()
 			return redirect('reservas')
 	contexto = {
 	'form': form
@@ -59,11 +61,13 @@ def cadastro_reserva(request):
 
 @login_required
 def editar_reserva(request, id):
-	reserva = Reserva.objects.get(pk=id)
+	reserva = Reservas.objects.get(pk=id)
 	form = ReservaForm(request.POST or None, instance=reserva)
 
 	if form.is_valid():
-			form.save()
+			reserva_salva = form.save(commit=False)
+			reserva_salva.user = request.user
+			reserva_salva.save()
 			return redirect('reservas')
 	contexto = {
 	'form': form
@@ -72,6 +76,6 @@ def editar_reserva(request, id):
 
 @login_required
 def excluir_reserva(request, id):
-	reserva = Reserva.objects.get(pk=id)
+	reserva = Reservas.objects.get(pk=id)
 	reserva.delete()
 	return redirect('reservas')

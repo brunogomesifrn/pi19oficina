@@ -22,12 +22,11 @@
 					<th scope="col">Hora</th>
 					<th scope="col">Telefone</th>
 					<th scope="col">Resultado</th>
-					<th scope="col">Concluido</th>
 					<th scope="col">Gerenciar</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for reserva in lista_reservas%}
+				{% for reserva in lista_reservas %}
 				<tr>
 					<th scope="row">{{reserva.id}}</th>
 					<td>{{reserva.data}}</td>
@@ -38,26 +37,20 @@
 					{% else %}
 					<td>Concluido</td>
 					{% endif %}
-
-					{% if not reserva.conclusao %}
-					<td>Não</td>
-					{% else %}
-					<td>Sim</td>
-					{% endif %}
 					{% if not reserva.resultado %}
 					<td> <a href="{% url 'editar_reserva' reserva.id %}"><button type="button" class="btn btn-info" >Editar</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">excluir</button></td> </a>
 					{% else %}
 					<td> <a href="{% url 'editar_reserva' reserva.id %}"><button type="button" class="btn btn-info" disabled>Editar</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger" disabled>excluir</button></td></td>
-					{% endif %}
-				</tr>
-				{% empty %}
-				<tr>
-					<td colspan="7" scope="row">Nada Castrado</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-			
-		</table>
+						{% endif %}
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="7" scope="row">Nada Castrado</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
 	</div>
-</div>
-{% endblock %}
+	{% endblock %}
