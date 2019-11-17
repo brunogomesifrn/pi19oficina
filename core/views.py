@@ -35,4 +35,4 @@ def dados(request, id):
 
 @login_required
 def base(request):
-	return render(request, 'base.html')
+	return render(request, 'base2.html')
