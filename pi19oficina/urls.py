@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path 
-from core.views import home, cadastro, perfil, dados, base, reservas, cadastro_reserva, editar_reserva, excluir_reserva
+from core.views import home, cadastro, perfil, dados, base, reservas, cadastro_reserva, editar_reserva, excluir_reserva, confirmar_reserva, confirmar
 from django.contrib.auth import views as auth_views
 
 
@@ -26,6 +26,8 @@ urlpatterns = [
     path('cadastro/', cadastro, name="cadastro"),
     path('perfil/', perfil, name='perfil'),
     path('perfil/reservas/<int:user>', reservas, name='reservas'),
+    path('perfil/reservas/confirmar', confirmar_reserva, name='confirmar_reserva'),
+    path('perfil/reserva/confirmar/<int:resultado>', confirmar, name='confirmar'),
     path('perfil/cadastrar/reserva', cadastro_reserva, name='cadastro_reserva'),
     path('perfil/reserva/editar/<int:id>', editar_reserva, name='editar_reserva'),
     path('perfil/reserva/excluir/<int:id>', excluir_reserva, name='excluir_reserva'),

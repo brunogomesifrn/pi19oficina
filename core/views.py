@@ -79,3 +79,16 @@ def excluir_reserva(request, id):
 	reserva = Reservas.objects.get(pk=id)
 	reserva.delete()
 	return redirect('reservas')
+
+@login_required
+def confirmar_reserva(request):
+	reservas = Reservas.objects.all()
+	contexto = {
+	'lista_reservas': reservas
+	}
+	return render(request, 'confirmar.html', contexto)
+
+@login_required
+def confirmar(request, resultado):
+	reserva = Reservas.objects.filter(resultado=0).update(resultado=1)
+	return redirect('confirmar_reserva')
