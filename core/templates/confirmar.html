@@ -68,8 +68,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for reserva in lista_reservas %}
 				<tr>
+					{% for reserva in lista_reservas %}
 					{% if reserva.resultado %}
 					<th scope="row">{{reserva.id}}</th>
 					<td>{{reserva.data}}</td>

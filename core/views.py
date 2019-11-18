@@ -89,8 +89,10 @@ def confirmar_reserva(request):
 	return render(request, 'confirmar.html', contexto)
 
 @login_required
-def confirmar(request, resultado):
-	reserva = Reservas.objects.filter(resultado=0).update(resultado=1)
+def confirmar(request, id):
+	reserva = Reservas.objects.get(pk=id)
+	reserva.resultado = 1
+	reserva.save()
 	return redirect('confirmar_reserva')
 
 @login_required
