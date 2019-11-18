@@ -35,7 +35,7 @@
 					{% if not reserva.resultado %}
 					<td>Em andamento</td>
 					{% else %}
-					<td>Concluido</td>
+					<td>Confirmado</td>
 					{% endif %}
 					{% if not reserva.resultado %}
 					<td> <a href="{% url 'editar_reserva' reserva.id %}"><button type="button" class="btn btn-info" >Editar</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">excluir</button></td> </a>

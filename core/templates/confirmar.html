@@ -36,7 +36,6 @@
 					<td>Em andamento</td>
 					<td> <a href="{% url 'confirmar' reserva.id %}"><button type="button" class="btn btn-info" >sim</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">Não</button></td> </a>
 					{% else %}
-					<td> Nada para confirmar</td>
 						{% endif %}
 					</tr>
 					{% empty %}

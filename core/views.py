@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Reservas
-from .forms import ReservaForm
+from .models import Reservas, Comentarios
+from .forms import ReservaForm, ComentarioForm
 # Create your views here.
 
 def home(request):
@@ -53,7 +53,7 @@ def cadastro_reserva(request):
 			reserva_salva = form.save(commit=False)
 			reserva_salva.user = request.user
 			reserva_salva.save()
-			return redirect('reservas')
+			return redirect('perfil')
 	contexto = {
 	'form': form
 	}
@@ -68,7 +68,7 @@ def editar_reserva(request, id):
 			reserva_salva = form.save(commit=False)
 			reserva_salva.user = request.user
 			reserva_salva.save()
-			return redirect('reservas')
+			return redirect('perfil')
 	contexto = {
 	'form': form
 	}
@@ -78,7 +78,7 @@ def editar_reserva(request, id):
 def excluir_reserva(request, id):
 	reserva = Reservas.objects.get(pk=id)
 	reserva.delete()
-	return redirect('reservas')
+	return redirect('perfil')
 
 @login_required
 def confirmar_reserva(request):
@@ -92,3 +92,24 @@ def confirmar_reserva(request):
 def confirmar(request, resultado):
 	reserva = Reservas.objects.filter(resultado=0).update(resultado=1)
 	return redirect('confirmar_reserva')
+
+@login_required
+def comentario(request):
+	form = ComentarioForm(request.POST or None)
+	if form.is_valid():
+			reserva_salva = form.save(commit=False)
+			reserva_salva.user = request.user
+			reserva_salva.save()
+			return redirect('perfil')
+	contexto = {
+	'form': form
+	}
+	return render(request, 'comentario.html', contexto)
+
+@login_required
+def comentarios(request):
+	comentarios = Comentarios.objects.all()
+	contexto = {
+	'lista_comentarios' : comentarios
+	}
+	return render(request, 'comentarios.html', contexto)

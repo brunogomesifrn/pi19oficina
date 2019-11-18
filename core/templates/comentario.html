@@ -1,0 +1,23 @@
+{% extends "base2.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>Fazer Comentário</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+	<div class="col-12">
+		<form method="post">
+			{% csrf_token %}
+			<label for="">Nome:</label>
+						{{ form.nome | add_class:"form-control"}}
+			<label for="">Comentário:</label>
+						{{ form.comentario | add_class:"form-control"}}
+			<br />
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

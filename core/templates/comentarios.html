@@ -1,0 +1,24 @@
+{% extends "base2.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>Fazer Comentário</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+	{% for comentario in lista_comentarios %}
+	<div class="col-md-4 col-12">
+		<div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h4 class="card-title">{{comentario.nome}}</h4>
+            <p class="card-text">{{comentario.comentario}}</p>
+          </div>
+	</div>
+</div>
+	{% empty %}
+	<h2>Nenhum comentário cadastrado</h2>
+	{% endfor %}
+</div>
+{% endblock %}
