@@ -34,10 +34,10 @@
 					<td>{{reserva.hora}}</td>
 					<td>{{reserva.contato}}</td>
 					<td>Em andamento</td>
-					<td> <a href="{% url 'confirmar' reserva.id %}"><button type="button" class="btn btn-info" >sim</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">Não</button></td> </a>
+					<td> <a href="{% url 'confirmar' reserva.id %}"><button type="button" class="btn btn-info" >sim</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger">Não</button> </a> </td>
+				</tr>
 					{% else %}
-						{% endif %}
-					</tr>
+					{% endif %}
 					{% empty %}
 					<tr>
 						<td colspan="7" scope="row">Nada Castrado</td>
@@ -76,9 +76,11 @@
 					<td>{{reserva.hora}}</td>
 					<td>{{reserva.contato}}</td>
 					<td>Confirmado</td>
-					<td> <a href="{% url 'confirmar' reserva.id %}"><button type="button" class="btn btn-info" disabled>sim</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger" disabled>Não</button></td> </a>
+					<td> <a href="{% url 'confirmar' reserva.id %}"><button type="button" class="btn btn-info" disabled>sim</button> </a> <a href="{% url 'excluir_reserva' reserva.id %}"> <button type="button" class="btn btn-danger" disabled>Não</button> </a></td>
+				</tr>
 					{% else %}
-					<td> Nada ainda</td>
+					<tr>
+					<td  colspan="7"> Nada ainda</td>
 						{% endif %}
 					</tr>
 					{% empty %}
